@@ -19,9 +19,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">GELEN KUTUSU</h4>
+                        <h4 class="card-title">Giden KUTUSU</h4>
                         <p class="card-description">
-                            Tablo:  <code>.Duyurular</code>
+                            Tablo:  <code>.Mesajlarım</code>
                         </p>
                         <div class="table-responsive">
                             <table class="table">
@@ -29,7 +29,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Konu</th>
-                                        <th>Gönderen</th>
+                                        <th>Alıcı</th>
                                         <th>Tarih</th>
                                     </tr>
                                 </thead>
@@ -39,7 +39,7 @@
                                         <tr>
                                             <th>@item.AppMessageID</th>
                                             <td>@item.Subject</td>
-                                            <td>@item.SenderMail</td>
+                                            <td>@item.ReceiverName</td>
                                             <td>@item.Date.ToString("dd.MMM.yyyy")</td>
                                             <td><a href="/Message/SenderMessageDetail/@item.AppMessageID" class="btn btn-outline-secondary">Mesajı Gör</a></td>
                                         </tr>

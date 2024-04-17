@@ -1,4 +1,5 @@
 ﻿using EPosta.Business.Concrete;
+using EPosta.DataAccess.Concrete;
 using EPosta.DataAccess.EntityFramework;
 using EPosta.Entity.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -42,6 +43,27 @@ namespace EPosta.UI.Controllers
         {
             AppMessage message = _messageDal.GetById(id);
             return View(message);
+        }
+
+        [HttpGet]
+        public IActionResult AddMessage()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddMessage(AppMessage p)
+        {
+            var values = await _userMenager.FindByNameAsync(User.Identity.Name);
+            string mail = values.Email;
+            string name = values.FirstName + " " + values.LastName;
+            p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            p.SenderMail = mail;
+            p.SenderName = name;
+            EPostaContext c = new EPostaContext();
+            var username = c.Users.Where(x => x.Email == p.ReceiverMail).Select(y => y.FirstName + " " + y.LastName).FirstOrDefault();
+            p.ReceiverName = username;
+            _messageDal.TAdd(p);
+            return RedirectToAction("SenderMessage");
         }
 
     }
