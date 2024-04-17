@@ -28,14 +28,15 @@ namespace EPosta.Business.Concrete
             return _messageDal.GetByID(id);
         }
 
-        public List<AppMessage> GetListReceiver(string p)
+        public List<AppMessage> GetListReceiverMessage(string p)
         {
             return _messageDal.GetByFilter(x => x.ReceiverMail == p);
+
         }
 
-        public List<AppMessage> GetListSender(string p)
+        public List<AppMessage> GetListSenderMessage(string p)
         {
-           return _messageDal.GetByFilter(x=>x.SenderMail== p); 
+            return _messageDal.GetByFilter(x => x.SenderMail == p);
         }
 
         public void TAdd(AppMessage entity)

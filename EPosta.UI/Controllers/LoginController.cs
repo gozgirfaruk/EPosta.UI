@@ -23,12 +23,14 @@ namespace EPosta.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(AppLoginModelView p)
         {
-            if(ModelState.IsValid)
+            TempData["a"] = p.UserName;
+
+            if (ModelState.IsValid)
             {
-                var result =await _signInManager.PasswordSignInAsync(p.UserName,p.Password,false,true);
-                if(result.Succeeded)
+                var result = await _signInManager.PasswordSignInAsync(p.UserName, p.Password, false, true);
+                if (result.Succeeded)
                 {
-                    return RedirectToAction("Index","Message");
+                    return RedirectToAction("SenderMessage", "Message");
                 }
                 else
                 {
@@ -36,6 +38,11 @@ namespace EPosta.UI.Controllers
                 }
             }
             return View();
+        }
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

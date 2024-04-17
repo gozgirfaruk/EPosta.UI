@@ -8,18 +8,41 @@ namespace EPosta.UI.Controllers
 {
     public class MessageController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
-        AppMessageMenager _menager = new AppMessageMenager(new EfAppMessageDal());
+        AppMessageMenager _messageDal = new AppMessageMenager(new EfAppMessageDal());
+        private readonly UserManager<AppUser> _userMenager;
 
-        public MessageController(UserManager<AppUser> userManager)
+        public MessageController(UserManager<AppUser> userMenager)
         {
-            _userManager = userManager;
+            _userMenager = userMenager;
         }
 
-
-        public IActionResult Index()
+        public async Task<IActionResult> SenderMessage(string p)
         {
-            return View();
+            var values = await _userMenager.FindByNameAsync(User.Identity.Name);
+            p = values.Email;
+            var messageList = _messageDal.GetListSenderMessage(p);
+            return View(messageList);
         }
+
+        public IActionResult SenderMessageDetail(int id)
+        {
+            AppMessage message = _messageDal.GetById(id);
+            return View(message);
+        }
+        public async Task<IActionResult> ReceiverMessage(string p)
+        {
+            var values = await _userMenager.FindByNameAsync(User.Identity.Name);
+            p = values.Email;
+            var messageList = _messageDal.GetListReceiverMessage(p);
+
+            return View(messageList);
+        }
+
+        public IActionResult ReceiverMessageDetail(int id)
+        {
+            AppMessage message = _messageDal.GetById(id);
+            return View(message);
+        }
+
     }
 }

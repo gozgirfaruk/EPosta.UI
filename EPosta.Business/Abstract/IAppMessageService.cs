@@ -9,7 +9,7 @@ namespace EPosta.Business.Abstract
 {
     public interface IAppMessageService : IGenericService<AppMessage>
     {
-        List<AppMessage> GetListSender(string p);
-        List<AppMessage> GetListReceiver(string p);
+        List<AppMessage> GetListSenderMessage(string p);
+        List<AppMessage> GetListReceiverMessage(string p);
     }
 }

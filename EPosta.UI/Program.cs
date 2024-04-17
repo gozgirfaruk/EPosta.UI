@@ -1,13 +1,20 @@
+using EPosta.Business.Abstract;
+using EPosta.Business.Concrete;
+using EPosta.DataAccess.Abstract;
 using EPosta.DataAccess.Concrete;
+using EPosta.DataAccess.EntityFramework;
 using EPosta.Entity.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<EPostaContext>();
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<EPostaContext>();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IAppMessageDal,EfAppMessageDal>();
+builder.Services.AddScoped<IAppMessageService,AppMessageMenager>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<EPostaContext>();
 
 var app = builder.Build();
 
@@ -23,8 +30,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

@@ -1,6 +1,7 @@
-﻿
+﻿@using EPosta.Entity.Concrete
+@model List<AppMessage>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ReceiverMessage";
     Layout = "~/Views/Shared/_AppLayout.cshtml";
 }
 
@@ -18,7 +19,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Gelen Kutusu</h4>
+                        <h4 class="card-title">GELEN KUTUSU</h4>
                         <p class="card-description">
                             Tablo:  <code>.Duyurular</code>
                         </p>
@@ -29,21 +30,20 @@
                                         <th>#</th>
                                         <th>Konu</th>
                                         <th>Gönderen</th>
-                                        <th>Detay</th>
+                                        <th>Tarih</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @*  @foreach(var item in Model)
+                                    @foreach (var item in Model)
                                     {
-                                        
-                                    <tr>
-                                        <th>@item.AppMessageID</th>
-                                        <td>@item.Subject</td>
-                                        <td>@item.Date.ToString("dd.MMM.yyyy")</td>
-
-                                        <td><a href="#" class="btn btn-outline-secondary">Görüntüle</a></td>
-                                    </tr>
-                                    } *@
+                                        <tr>
+                                            <th>@item.AppMessageID</th>
+                                            <td>@item.Subject</td>
+                                            <td>@item.SenderMail</td>
+                                            <td>@item.Date.ToString("dd.MMM.yyyy")</td>
+                                            <td><a href="/Message/ReceiverMessageDetail/@item.AppMessageID" class="btn btn-outline-secondary">Mesajı Gör</a></td>
+                                        </tr>
+                                    }
 
                                 </tbody>
                             </table>
