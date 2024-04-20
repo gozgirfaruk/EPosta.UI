@@ -29,7 +29,8 @@
 
 ## Mesaj Görüntüleme
 
-![Ekran görüntüsü 2024-04-20 121821](https://github.com/gozgirfaruk/EPosta.UI/assets/125920944/d7a54984-cfaf-43da-8777-ab005cc24351)
+![Ekran görüntüsü 2024-04-20 125321](https://github.com/gozgirfaruk/EPosta.UI/assets/125920944/11c19851-619a-49d0-83b1-25c88e67b781)
+
 
 ## Mesaj Oluşturma
 ![Ekran görüntüsü 2024-04-20 122156](https://github.com/gozgirfaruk/EPosta.UI/assets/125920944/e2a2ed48-5941-4027-b210-819835bab6aa)
