@@ -41,7 +41,7 @@
                                         <tr>
                                             <th>@item.AppMessageID</th>
                                             <td>@item.Subject</td>
-                                            <td>@item.SenderName</td>
+                                            <td><img src="@item.ImageUrl" />  @item.SenderName</td>
                                             <td>@item.Date.ToString("dd.MMM.yyyy")</td>
                                             <td><a href="/Message/ReceiverMessageDetail/@item.AppMessageID" class="btn btn-outline-secondary">Mesajı Gör</a></td>
                                             <td><a href="/Message/Delete/@item.AppMessageID" class="btn btn-outline-danger">Sil</a></td>
