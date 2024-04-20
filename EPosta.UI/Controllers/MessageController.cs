@@ -2,8 +2,11 @@
 using EPosta.DataAccess.Concrete;
 using EPosta.DataAccess.EntityFramework;
 using EPosta.Entity.Concrete;
+using MessagePack;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using X.PagedList;
 
 namespace EPosta.UI.Controllers
 {
@@ -17,11 +20,11 @@ namespace EPosta.UI.Controllers
             _userMenager = userMenager;
         }
 
-        public async Task<IActionResult> SenderMessage(string p)
+        public async Task<IActionResult> SenderMessage(string p, int page=1)
         {
             var values = await _userMenager.FindByNameAsync(User.Identity.Name);
             p = values.Email;
-            var messageList = _messageDal.GetListSenderMessage(p);
+            var messageList = _messageDal.GetListSenderMessage(p).ToPagedList(page, 5);
             return View(messageList);
         }
 
@@ -30,12 +33,13 @@ namespace EPosta.UI.Controllers
             AppMessage message = _messageDal.GetById(id);
             return View(message);
         }
-        public async Task<IActionResult> ReceiverMessage(string p)
+        public async Task<IActionResult> ReceiverMessage(string p,int page =1 )
         {
             var values = await _userMenager.FindByNameAsync(User.Identity.Name);
             p = values.Email;
-            var messageList = _messageDal.GetListReceiverMessage(p);
-
+            TempData["data"] = p;
+            var messageList = _messageDal.GetListReceiverMessage(p).Where(x=>x.Status==true).ToPagedList(page,5);
+           
             return View(messageList);
         }
 
@@ -65,6 +69,15 @@ namespace EPosta.UI.Controllers
             _messageDal.TAdd(p);
             return RedirectToAction("SenderMessage");
         }
+
+        public IActionResult Delete(int id)
+        {
+            var values = _messageDal.GetById(id);
+            _messageDal.TUpdate(values);
+            return RedirectToAction("ReceiverMessage");
+        }
+
+   
 
     }
 }

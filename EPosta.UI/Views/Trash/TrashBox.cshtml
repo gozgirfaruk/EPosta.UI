@@ -1,12 +1,9 @@
-﻿@using EPosta.Entity.Concrete
-@using X.PagedList
-@using X.PagedList.Mvc.Core
-@model IPagedList<AppMessage>
+﻿@using EPosta.Entity.Concrete   
+@model List<AppMessage>
 @{
-    ViewData["Title"] = "SenderMessage";
+    ViewData["Title"] = "TrashBox";
     Layout = "~/Views/Shared/_AppLayout.cshtml";
 }
-
 <html lang="en">
 
 <body>
@@ -21,7 +18,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Giden KUTUSU</h4>
+                        <h4 class="card-title">GELEN KUTUSU</h4>
                         <p class="card-description">
                             Tablo:  <code>.Mesajlarım</code>
                         </p>
@@ -31,7 +28,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Konu</th>
-                                        <th>Alıcı</th>
+                                        <th>Gönderen</th>
                                         <th>Tarih</th>
                                     </tr>
                                 </thead>
@@ -41,16 +38,16 @@
                                         <tr>
                                             <th>@item.AppMessageID</th>
                                             <td>@item.Subject</td>
-                                            <td>@item.ReceiverName</td>
+                                            <td>@item.SenderName</td>
                                             <td>@item.Date.ToString("dd.MMM.yyyy")</td>
-                                            <td><a href="/Message/SenderMessageDetail/@item.AppMessageID" class="btn btn-outline-secondary">Mesajı Gör</a></td>
+                                            <td><a href="/Message/ReceiverMessageDetail/@item.AppMessageID" class="btn btn-outline-secondary">Mesajı Gör</a></td>
+                                            <td><a href="/Message/Delete/@item.AppMessageID" class="btn btn-outline-danger">Sil</a></td>
                                         </tr>
                                     }
 
                                 </tbody>
                             </table>
                             <br />
-                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("SenderMessage", new { page }))
                         </div>
                     </div>
                 </div>

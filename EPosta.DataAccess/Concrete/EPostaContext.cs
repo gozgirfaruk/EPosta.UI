@@ -17,6 +17,7 @@ namespace EPosta.DataAccess.Concrete
         }
 
         public DbSet<AppMessage> AppMessages { get; set; }
+        public DbSet<Draft> Drafts{ get; set; }
 
     }
 }

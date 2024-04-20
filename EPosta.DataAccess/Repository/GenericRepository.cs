@@ -15,7 +15,7 @@ namespace EPosta.DataAccess.Repository
         public void Delete(T entity)
         {
             using var db = new EPostaContext();
-            db.Remove(entity);
+            db.Update(entity);
             db.SaveChanges();
         }
 

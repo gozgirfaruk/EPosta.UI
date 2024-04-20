@@ -1921,6 +1921,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="X.PagedList" Version="9.1.2" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="9.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1931,6 +1933,7 @@
     <Folder Include="wwwroot\AdminSkydash\.git\objects\info\" />
     <Folder Include="wwwroot\AdminSkydash\.git\objects\pack\" />
     <Folder Include="wwwroot\AdminSkydash\.git\refs\tags\" />
+    <Folder Include="wwwroot\userimage\" />
   </ItemGroup>
 
 </Project>

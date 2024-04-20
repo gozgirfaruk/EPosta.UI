@@ -46,7 +46,8 @@ namespace EPosta.Business.Concrete
 
         public void TDelete(AppMessage entity)
         {
-            _messageDal.Delete(entity);
+            entity.Status = false;
+            _messageDal.Update(entity);
         }
 
         public void TUpdate(AppMessage entity)

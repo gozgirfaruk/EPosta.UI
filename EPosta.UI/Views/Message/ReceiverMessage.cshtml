@@ -1,5 +1,7 @@
 ﻿@using EPosta.Entity.Concrete
-@model List<AppMessage>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<AppMessage>
 @{
     ViewData["Title"] = "ReceiverMessage";
     Layout = "~/Views/Shared/_AppLayout.cshtml";
@@ -42,11 +44,14 @@
                                             <td>@item.SenderName</td>
                                             <td>@item.Date.ToString("dd.MMM.yyyy")</td>
                                             <td><a href="/Message/ReceiverMessageDetail/@item.AppMessageID" class="btn btn-outline-secondary">Mesajı Gör</a></td>
+                                            <td><a href="/Message/Delete/@item.AppMessageID" class="btn btn-outline-danger">Sil</a></td>
                                         </tr>
                                     }
 
                                 </tbody>
                             </table>
+                            <br />
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("ReceiverMessage", new { page }))
                         </div>
                     </div>
                 </div>

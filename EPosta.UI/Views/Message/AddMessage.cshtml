@@ -4,23 +4,26 @@
     Layout = "~/Views/Shared/_AppLayout.cshtml";
 }
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <h2>Yeni Mesaj Gönderme Sayfası</h2>
 
 <br />
 <form class="form-group" method="post">
     <label>Alıcı Mail Adresi</label>
-    @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control", @required="required" })
     <br />
 
     <label>Konu</label>
-    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control" , @required="required" })
     <br />
 
     <label>Mesaj</label>
-    @Html.TextAreaFor(x => x.Description, 20, 50, new { @class = "form-control" })
+    @Html.TextAreaFor(x => x.Description, 20, 50, new { @class = "form-control", @required = "required" })
     <br />
 
     <button class="btn btn-primary" href="/Message/SenderMessage">Gönder</button>
+    <a href="/Draft/DraftView" class="btn btn-danger">Taslaklara Kaydet</a>
     <a href="/Message/SenderMessage" class="btn btn-secondary">Vazgeç</a>
 
 </form>
